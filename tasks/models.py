@@ -19,13 +19,13 @@ class Task(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title + '-' + str(uuid.uuid4()[:4]))
+            self.slug = slugify(self.title + '-' + str(uuid.uuid4())[:4])
         super().save(*args, **kwargs)
         
         return self
     
     def get_absolute_url(self):
-        return f'/tasks/{self.slug}'
+        return f'{self.slug}/'
     
     class Meta:
         ordering = ['-created_at']
